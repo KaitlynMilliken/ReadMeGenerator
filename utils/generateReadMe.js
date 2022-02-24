@@ -29,24 +29,30 @@ function generateMarkdown(data) {
 
   ${data.description}
 
-  ## Usage:
+  ##### Table of Contents  
+  1. [Usage](#Usage)  
+  2. [Instructions](#Instructions) 
+  3. [Issues](#Issues) 
+  4. [License](#License) 
+
+  ## Usage
   ==================
 
   ${data.use}
 
-  ## Instructions:
+  ## Instructions
   ==================
 
   ${data.instructions}
 
-  ## Issues?
+  ## Issues
   ==================
 
   ${data.troubleshoot}
 
   ## License
   ==================
-  
+
   ${data.license}
 
   
