@@ -55,12 +55,16 @@ const questions = [
             message: "Enter your email: "
         }
     ];
-    
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    const userInput = inquirer.prompt(questions);
+
+    writeToFile("/README.md", userInput);
+}
 
 // Function call to initialize app
 init();
