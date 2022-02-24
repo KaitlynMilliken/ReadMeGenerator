@@ -2,7 +2,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const generateReadme = require("./utils/generateReadme")
+const generateReadme = require("./utils/generateReadMe")
 const writeFileAsync = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
@@ -33,7 +33,7 @@ const questions = [
             message: "Choose a license! ",
             choices: [
                 "Apache",
-                "ISC",
+                "Creative Commons",
                 "MIT",
                 "Mozilla",
                 "Open"
@@ -57,14 +57,20 @@ const questions = [
     ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {
-    const userInput = inquirer.prompt(questions);
-
-    writeToFile("/README.md", userInput);
+function writeToFile(fileName, data) {
+    data = JSON.stringify(data);
+    fs.writeFile(fileName, data, (err) => {
+        console.log(err);
+    });
 }
 
-// Function call to initialize app
+
+function init() {
+    const userInput = inquirer.prompt(questions).then(answers => {
+        writeToFile("./README.md", answers);
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
 init();
