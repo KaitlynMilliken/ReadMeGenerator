@@ -1,11 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const util = require("util");
-const generateReadme = require("./utils/generateReadMe")
-const writeFileAsync = util.promisify(fs.writeFile);
+const generateReadme = require("./utils/generateReadMe");
 
-// TODO: Create an array of questions for user input
 const questions = [
         {
             type: "input",
@@ -58,15 +55,20 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    data = JSON.stringify(data);
+    data = generateReadme(data);
     fs.writeFile(fileName, data, (err) => {
-        console.log(err);
+        if(err){
+            console.log(err);
+        }
+        else {
+            console.log("Success!");
+        }
     });
 }
 
 
 function init() {
-    const userInput = inquirer.prompt(questions).then(answers => {
+    inquirer.prompt(questions).then(answers => {
         writeToFile("./README.md", answers);
     }).catch(err => {
         console.log(err);
